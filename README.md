@@ -9,11 +9,11 @@ Elixir code :
 
 ```elixir
 import Elihpword
-document = make_document()
-{document, section_id} = add_section(document)
-{document, _id, _objid} = add_text(document, section_id, "How convenient !")
-document = write(document, Path.join(File.cwd!(), "output.docx"))
-document |> run!
+output_path = Path.join(File.cwd!(), "output.docx")
+doc = make_document()
+{doc, section} = add_section(doc)
+{doc, _section, _object} = add_text(doc, section, "How convenient !")
+doc |> write(output_path) |> run!
 ```
 
 This generates an AST :

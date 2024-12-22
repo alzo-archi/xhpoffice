@@ -103,10 +103,10 @@ defmodule Elihpword do
   Creates a sample document with some text and saves it to output.docx.
   """
   def sample() do
-    document = make_document()
-    {document, section_id} = add_section(document)
-    {document, _section_id, _object} = add_text(document, section_id, "How convenient !")
-    ready_to_write = write(document, Path.join(File.cwd!(), "output.docx"))
-    ready_to_write |> run!
+    output_path = Path.join(File.cwd!(), "output.docx")
+    doc = make_document()
+    {doc, section} = add_section(doc)
+    {doc, _section, _object} = add_text(doc, section, "How convenient !")
+    doc |> write(output_path) |> run!
   end
 end
