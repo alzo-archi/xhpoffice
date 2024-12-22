@@ -51,6 +51,7 @@ $varF8440D2829E71AAC14AAFF423F0C15F9 = $var83F1F620C6BD472063B55A504626B8C8->add
 $var65ADDF5337DA12DC1D21C4C819200176 = \PhpOffice\PhpWord\IOFactory::createWriter($varF4F605C1FFBCF3CDC59374EBDF8B0DB8,"Word2007");
 $var65ADDF5337DA12DC1D21C4C819200176->save("<cwd>/elihpword/output.docx");
 ?>
+```
 
 ### Check if PHP and composer are accessible :
 
