@@ -1,4 +1,4 @@
-defmodule Elihpword.Utils do
+defmodule Xhpoffice.Utils do
   @moduledoc """
   Utility functions for file manipulation operations.
   """

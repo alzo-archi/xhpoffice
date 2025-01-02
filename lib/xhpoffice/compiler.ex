@@ -1,6 +1,6 @@
-defmodule Elihpword.Compiler do
+defmodule Xhpoffice.Compiler do
   @moduledoc """
-  Compiles an Elihpword document into PHP code.
+  Compiles an Xhpoffice document into PHP code.
   Takes an AST-like document structure and generates the corresponding PHP syntax.
   """
   def compile(document) do

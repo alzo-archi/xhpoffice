@@ -1,9 +1,9 @@
-defmodule Elihpword.MixProject do
+defmodule Xhpoffice.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :elihpword,
+      app: :xhpoffice,
       version: "0.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,

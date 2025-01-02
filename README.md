@@ -1,6 +1,6 @@
-# Elihpword (super-alpha POC)
+# Xhpoffice (super-alpha POC)
 
-Elihpword is a POC to use the PHPOffice group of (excellent) libraries through elixir. In addition to a DSL to manipulate documents, it provides a `~PHP` sigil to run PHP code.
+Xhpoffice is a POC to use the PHPOffice group of (great) libraries through elixir. In addition to a DSL to manipulate documents, it provides a `~PHP` sigil to run PHP code.
 PHPWord and friends heavily use mutation, so we build a tree of calls in a functional style in Elixir, which is rewritten to use mutation in PHP.
 
 ### Write a document
@@ -8,7 +8,7 @@ PHPWord and friends heavily use mutation, so we build a tree of calls in a funct
 Elixir code :
 
 ```elixir
-import Elihpword
+import Xhpoffice.Word
 output_path = Path.join(File.cwd!(), "output.docx")
 doc = make_document()
 {doc, section} = add_section(doc)
@@ -49,14 +49,14 @@ $varF4F605C1FFBCF3CDC59374EBDF8B0DB8 = new \PhpOffice\PhpWord\PhpWord();
 $var83F1F620C6BD472063B55A504626B8C8 = $varF4F605C1FFBCF3CDC59374EBDF8B0DB8->addSection();
 $varF8440D2829E71AAC14AAFF423F0C15F9 = $var83F1F620C6BD472063B55A504626B8C8->addText("How convenient !");
 $var65ADDF5337DA12DC1D21C4C819200176 = \PhpOffice\PhpWord\IOFactory::createWriter($varF4F605C1FFBCF3CDC59374EBDF8B0DB8,"Word2007");
-$var65ADDF5337DA12DC1D21C4C819200176->save("<cwd>/elihpword/output.docx");
+$var65ADDF5337DA12DC1D21C4C819200176->save("<cwd>/xhpoffice/output.docx");
 ?>
 ```
 
 ### Check if PHP and composer are accessible :
 
 ```elixir
-iex> Elihpword.Prerequisites.clear?()
+iex> Xhpoffice.Prerequisites.clear?()
 true
 ```
 
@@ -68,7 +68,7 @@ iex> script = ~PHP"""
 $foo = 5;
 elixir_return(1 + 2 + $foo);
 """
-iex> result = Elihpword.Php.run!(script)
+iex> result = Xhpoffice.Php.run!(script)
 8
 ```
 
@@ -80,7 +80,7 @@ Input must be provided in-order, is retrieved through `elixir_data` and should b
 iex> script = ~PHP"""
 elixir_return(1 + 2 + elixir_data(0));
 """
-iex> result = Elihpword.Php.run!(script, [5])
+iex> result = Xhpoffice.Php.run!(script, [5])
 8
 ```
 
@@ -92,5 +92,5 @@ This creates a temporary folder, injects a composer.json file, installs dependen
 iex> script = ~PHP"""
 elixir_return(1);
 """
-iex> result = Elihpword.Phpword.run_with_phpword!(script)
+iex> result = Xhpoffice.Phpword.run_with_phpword!(script)
 ```

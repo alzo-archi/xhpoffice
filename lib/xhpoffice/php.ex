@@ -1,4 +1,4 @@
-defmodule Elihpword.Php do
+defmodule Xhpoffice.Php do
   @moduledoc """
   A module for executing PHP code from within Elixir.
   Provides functionality to create temporary PHP files, inject seed data,
@@ -44,32 +44,32 @@ defmodule Elihpword.Php do
   def inject_seed(file, seed) do
     prequel = """
     <?php
-    global $__elihpword_seed;
-    $__elihpword_seed = json_decode("#{Jason.encode!(seed)}");
-    global $__elihpword_output;
-    $__elihpword_output = null;
+    global $__xhpoffice_seed;
+    $__xhpoffice_seed = json_decode("#{Jason.encode!(seed)}");
+    global $__xhpoffice_output;
+    $__xhpoffice_output = null;
 
     function elixir_data($index) {
-      global $__elihpword_seed;
-      return $__elihpword_seed[$index];
+      global $__xhpoffice_seed;
+      return $__xhpoffice_seed[$index];
     }
 
     function elixir_return($value) {
-      global $__elihpword_output;
-      $__elihpword_output = $value;
+      global $__xhpoffice_output;
+      $__xhpoffice_output = $value;
     }
     ?>
     """
 
     sequel = """
     <?php
-    echo json_encode($__elihpword_output);
+    echo json_encode($__xhpoffice_output);
     ?>
     """
 
     path = String.replace(file, ".php", ".elixir.php")
     File.cp(file, path)
-    Elihpword.Utils.encircle!(path, prequel, sequel)
+    Xhpoffice.Utils.encircle!(path, prequel, sequel)
     path
   end
 

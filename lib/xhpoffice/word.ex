@@ -1,4 +1,4 @@
-defmodule Elihpword do
+defmodule Xhpoffice.Word do
   @moduledoc """
   Module for generating Word documents using PHPWord through Elixir.
   Provides functions to create documents, add sections and text, and save to disk.
@@ -34,10 +34,10 @@ defmodule Elihpword do
 
     updated =
       document
-      |> Elihpword.Api.update_sections(fn v ->
+      |> Xhpoffice.Api.update_sections(fn v ->
         Map.put(v, id, make_section(id))
       end)
-      |> Elihpword.Api.push_calls([
+      |> Xhpoffice.Api.push_calls([
         {:assign, id, {:method, {:var, document.id}, "addSection", []}}
       ])
 
@@ -61,12 +61,12 @@ defmodule Elihpword do
 
     updated =
       document
-      |> Elihpword.Api.update_sections(fn v ->
-        Elihpword.Api.update_section(v, section_id, fn s ->
-          s |> Elihpword.Api.add_section_item(object_id, {:text, text})
+      |> Xhpoffice.Api.update_sections(fn v ->
+        Xhpoffice.Api.update_section(v, section_id, fn s ->
+          s |> Xhpoffice.Api.add_section_item(object_id, {:text, text})
         end)
       end)
-      |> Elihpword.Api.push_calls([
+      |> Xhpoffice.Api.push_calls([
         {:assign, object_id, {:method, {:var, section_id}, "addText", [text]}}
       ])
 
@@ -81,7 +81,7 @@ defmodule Elihpword do
     writer_id = random_string()
 
     document
-    |> Elihpword.Api.push_calls([
+    |> Xhpoffice.Api.push_calls([
       {:assign, writer_id,
        {:static, "\\PhpOffice\\PhpWord\\IOFactory", "createWriter",
         [{:var, document.id}, "Word2007"]}},
@@ -94,9 +94,9 @@ defmodule Elihpword do
   """
   def run!(document) do
     document
-    |> Elihpword.Compiler.compile()
-    |> Elihpword.Php.sigil_PHP([])
-    |> Elihpword.Phpword.run_with_word!()
+    |> Xhpoffice.Compiler.compile()
+    |> Xhpoffice.Php.sigil_PHP([])
+    |> Xhpoffice.Phpword.run_with_word!()
   end
 
   @doc """
@@ -107,6 +107,7 @@ defmodule Elihpword do
     doc = make_document()
     {doc, section} = add_section(doc)
     {doc, _section, _object} = add_text(doc, section, "How convenient !")
+
     doc |> write(output_path) |> run!
   end
 end

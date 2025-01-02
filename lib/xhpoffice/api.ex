@@ -1,4 +1,4 @@
-defmodule Elihpword.Api do
+defmodule Xhpoffice.Api do
   @moduledoc """
   API module for managing document sections and operations.
   """

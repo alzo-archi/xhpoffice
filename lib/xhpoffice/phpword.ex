@@ -1,4 +1,4 @@
-defmodule Elihpword.Phpword do
+defmodule Xhpoffice.Phpword do
   @moduledoc """
   Module for running PHP scripts with PHPWord support.
   Handles the setup and injection of Composer dependencies for PHPWord.
@@ -19,11 +19,11 @@ defmodule Elihpword.Phpword do
   defp write_composer_json(folder_path) do
     contents = """
     {
-        "name": "alzo-archi/elihpword",
+        "name": "alzo-archi/xhpoffice",
         "type": "project",
         "autoload": {
             "psr-4": {
-                "AlzoArchi\\\\Elihpword\\\\": "src/"
+                "AlzoArchi\\\\Xhpoffice\\\\": "src/"
             }
         },
         "authors": [],
@@ -49,7 +49,7 @@ defmodule Elihpword.Phpword do
     ?>
     """
 
-    Elihpword.Utils.prepend!(script_path, composer_injection)
+    Xhpoffice.Utils.prepend!(script_path, composer_injection)
   end
 
   @doc """
@@ -65,6 +65,6 @@ defmodule Elihpword.Phpword do
     write_composer_json(folder_path)
     run_composer(folder_path)
     inject_composer(new_script_path)
-    Elihpword.Php.run!(new_script_path)
+    Xhpoffice.Php.run!(new_script_path)
   end
 end
